@@ -46,6 +46,7 @@ public class Arm extends SubsystemBase {
     SmartDashboard.putNumber("LeftVel", LeftArmMotor.getVelocity().getValueAsDouble());
     SmartDashboard.putNumber("Arm in degrees", getAngleDegrees());
     SmartDashboard.putNumber("Distance from Limelight", LimelightHelpers.getDistance());
+    //woohoo git hub is so cool
 
     if (limitSwitch1.get()){
       setArmPosition(0.98);
