@@ -34,6 +34,7 @@ public class SwerveDrive extends Command {
   
   private double rotationVal, xVal, yVal;
   private double targetAngle = 0.0;
+  private double targetSpeed = 0.0;
   private PhoenixPIDController m_thetaController;
   private SendableChooser<Double> m_speedChooser;
   private SwerveRequest m_Request;
@@ -81,6 +82,7 @@ public class SwerveDrive extends Command {
   @Override
   public void execute() {
     boolean rotateWithButton = m_0.getAsBoolean() || m_90.getAsBoolean() || m_180.getAsBoolean() || m_270.getAsBoolean();
+    boolean slowDown = m_halfSpeed.getAsBoolean() || m_quarterSpeed.getAsBoolean();
 
     xVal = MathUtil.applyDeadband(xSup.getAsDouble() * m_speedChooser.getSelected(), 0.1);
     yVal = MathUtil.applyDeadband(ySup.getAsDouble() * m_speedChooser.getSelected(), 0.1);
@@ -104,6 +106,22 @@ public class SwerveDrive extends Command {
           .withVelocityY(xVal * MaxSpeed)
           .withTargetDirection(Rotation2d.fromDegrees(targetAngle));
     }else{
+      m_Request = drive.withVelocityX(yVal * MaxSpeed) // Drive forward with negative Y (forward)
+          .withVelocityY(xVal * MaxSpeed) // Drive left with negative X (left)
+          .withRotationalRate(rotationVal * MaxAngularRate); // Drive counterclockwise with negative X (left)
+    }
+
+    if (slowDown){
+      if (m_halfSpeed.getAsBoolean()){
+        targetAngle = (4.0);
+      } else if (m_quarterSpeed.getAsBoolean()){
+        targetSpeed = (2.0);
+      }
+
+      m_Request = drive.withVelocityX(xVal * targetSpeed)
+        .withVelocityY(yVal * targetSpeed)
+        .withRotationalRate(rotationVal * MaxAngularRate);
+    } else{
       m_Request = drive.withVelocityX(yVal * MaxSpeed) // Drive forward with negative Y (forward)
           .withVelocityY(xVal * MaxSpeed) // Drive left with negative X (left)
           .withRotationalRate(rotationVal * MaxAngularRate); // Drive counterclockwise with negative X (left)
