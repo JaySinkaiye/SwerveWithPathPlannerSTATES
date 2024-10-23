@@ -113,7 +113,7 @@ public class SwerveDrive extends Command {
 
     if (slowDown){
       if (m_halfSpeed.getAsBoolean()){
-        targetAngle = (4.0);
+        targetSpeed = (4.0);
       } else if (m_quarterSpeed.getAsBoolean()){
         targetSpeed = (2.0);
       }
