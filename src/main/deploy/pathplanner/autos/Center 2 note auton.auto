@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7919691804710636,
-      "y": 6.553205100106024
+      "x": 1.2,
+      "y": 5.52
     },
-    "rotation": 56.309932474020194
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -16,28 +16,9 @@
           "data": {
             "commands": [
               {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.75
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "NewArmDown"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "deadline",
-          "data": {
-            "commands": [
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.5
                 }
               },
               {
@@ -50,39 +31,58 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
           "type": "deadline",
           "data": {
             "commands": [
               {
-                "type": "wait",
+                "type": "path",
                 "data": {
-                  "waitTime": 0.5
+                  "pathName": "1.1"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "Shoot"
+                  "name": "Intake"
                 }
               }
             ]
           }
         },
         {
-          "type": "path",
+          "type": "deadline",
           "data": {
-            "pathName": "amp 1 "
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "1.2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "RevUp"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "amp 2"
+            "name": "Shoot"
           }
         }
       ]
     }
   },
-  "folder": "Comp Auton",
+  "folder": "Revised Autons",
   "choreoAuto": false
 }

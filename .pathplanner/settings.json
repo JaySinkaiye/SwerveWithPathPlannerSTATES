@@ -4,10 +4,12 @@
   "holonomicMode": true,
   "pathFolders": [
     "Amp",
+    "Revised Paths",
     "Week 1 center"
   ],
   "autoFolders": [
-    "Comp Auton"
+    "Comp Auton",
+    "Revised Autons"
   ],
   "defaultMaxVel": 9.5,
   "defaultMaxAccel": 8.0,
