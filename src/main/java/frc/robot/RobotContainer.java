@@ -19,6 +19,7 @@ import frc.robot.Commands.Rotate;
 import frc.robot.Commands.Shoot;
 import frc.robot.Commands.SwerveDrive;
 import frc.robot.Commands.moveDatArm;
+import frc.robot.Commands.noneAutonOption;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Climber;
 import frc.robot.Subsystems.CommandSwerveDrivetrain;
@@ -78,6 +79,7 @@ public class RobotContainer {
     ManualChooser.addOption("States Amp Score 1", new PathPlannerAuto("State Amp Score 1"));
     ManualChooser.addOption("States Amp Score 2", new PathPlannerAuto("State Amp Score 2"));
     ManualChooser.addOption("States Amp score(1) then center pickup", new PathPlannerAuto("State Amp Score Center pickup"));
+    ManualChooser.addOption("None", new noneAutonOption());
     
     // end of auto choose
 
@@ -97,8 +99,8 @@ public class RobotContainer {
             () -> -DriverJoystick.getLeftX(),  //Translation 
             () -> -DriverJoystick.getLeftY(),  //Translation
             () -> -DriverJoystick.getRightX(), //Rotation
-            DriverJoystick.povUp(), 
-            DriverJoystick.povDown(), 
+            DriverJoystick.povUp(), // Half speed
+            DriverJoystick.povDown(), // Quarter speed
             DriverJoystick.y(), //Face Forward
             DriverJoystick.b(), //Face Right
             DriverJoystick.a(), //Face Backwards
